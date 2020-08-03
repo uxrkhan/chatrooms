@@ -1,14 +1,21 @@
 const chatForm = document.getElementById('room-chat-form');
 const chatStream = document.querySelector('.room-stream');
 
+const { username, room } = Qs.parse(location.search, {
+    ignoreQueryPrefix: true
+})
+
 const socket = io();
 
-// message from server
+// join room
+socket.emit('joinRoom', { username, room });
+
+// on receiving message from server
 socket.on('message', message => {
     console.log(message);
     outputMessage(message);
 
-    // scroll down
+    // scroll down after every new message
     chatStream.scrollTop = chatStream.scrollHeight;
 });
 
@@ -23,8 +30,9 @@ chatForm.addEventListener('submit', e => {
     e.target.elements.msg.value = '';
     e.target.elements.msg.focus();
 
-    // emit message to server
-    socket.emit('chatMessage', msgText);
+    if (msgText.trim() !== '') // refuse only-whitespace messages
+        // emit the message
+        socket.emit('chatMessage', msgText);
 });
 
 // function to output message to DOM
@@ -32,9 +40,28 @@ chatForm.addEventListener('submit', e => {
 framework like React.js but we decided to use DOM */
 function outputMessage(msgObject) {
     const div = document.createElement('div');
-    div.classList.add('message');
-    div.innerHTML = `<p class="meta">${msgObject.username} <span>${msgObject.time}</span></p>
-    <p class="message-content">${msgObject.text}</p>`;
-
+    div.classList.add('message-container');
+    if (msgObject.username == username) {
+        div.innerHTML = `
+            <div class="outgoing-message">
+                <p class="meta">You <span>${msgObject.time}</span></p>
+                <p class="message-content">${msgObject.text}</p>
+            </div>`;
+    } else {
+        div.innerHTML = `
+            <div class="incoming-message">
+                <p class="meta">${msgObject.username} <span>${msgObject.time}</span></p>
+                <p class="message-content">${msgObject.text}</p>
+            </div>`;
+    }
     document.querySelector('.room-stream').appendChild(div);
 }
+
+// function htmlEscape(str) {
+//     return str
+//         .replace(/&/g, '&amp;')
+//         .replace(/"/g, '&quot;')
+//         .replace(/'/g, '&#39;')
+//         .replace(/</g, '&lt;')
+//         .replace(/>/g, '&gt;');
+// }

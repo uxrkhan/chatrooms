@@ -87,6 +87,7 @@ body {
 
 .room-container {
     margin: 2rem auto;
+    min-width: 500px;
     max-width: 1000px;
     border-radius: 2px;
     background-color: var(--light1);
@@ -96,7 +97,6 @@ body {
 .room-header {
     padding: 1.5rem;
     background-color: var(--primary);
-    border-bottom: 5px solid var(--dark);
     border-radius: 2px 2px 0 0;
     color: var(--dark);
     display: flex;
@@ -140,26 +140,42 @@ body {
     max-height: 25rem;
 }
 
-.room-stream .message {
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    background-color: var(--light1);
-    border-radius: 5px;
+.room-stream .message-container {
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    /* border: 1px solid red; */
 }
 
-.room-stream .message .meta {
+.room-stream .message-container .incoming-message {
+    padding: 0.8rem;
+    background-color: var(--light2);
+    border-radius: 5px;
+    width: fit-content;
+    max-width: 70%;
+    float: left;
+}
+
+.room-stream .message-container .outgoing-message {
+    padding: 0.8rem;
+    background-color: var(--light1);
+    border-radius: 5px;
+    width: fit-content;
+    max-width: 70%;
+    float: right;
+}
+
+.room-stream .message-container .meta {
     color: var(--dark);
     margin-bottom: 0.6rem;
     font-weight: bold;
 }
 
-.room-stream .message .meta span {
+.room-stream .message-container .meta span {
     font-weight: normal;
     color: var(--success)
 }
 
 .room-chat-form-container {
-    border-top: 5px solid var(--dark);
     background-color: var(--primary);
     border-radius: 0 0 2px 2px;
     padding: 1.5rem;
@@ -170,14 +186,14 @@ body {
 }
 
 .room-chat-form-container input[type='text'] {
-    font-size: 1rem;
-    padding: 0.5rem;
-    height: 2.5rem;
+    font-size: 1.2rem;
+    padding: 0.5rem 1.5rem;
+    height: 3rem;
     flex: 1;
-    border-radius: 5px 0 0 5px;
-    border-right: none;
+    border-radius: 1.5rem 0 0 1.5rem;
+    border: none;
 }
 
-.room-chat-form-container button {
-    border-radius: 0 5px 5px 0;
+input:focus {
+    outline: none;
 }

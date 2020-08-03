@@ -33,9 +33,11 @@
                 </ul>
             </div>
             <div class="room-stream">
-                <!-- <div class="message">
-                    <p class="meta">Chatrooms Bot <span>10:45 pm</span></p>
-                    <p class="message-content">Welcome to Chatrooms! :)</p>
+                <!-- <div class="message-container">
+                    <div class="incoming-message">
+                        <p class="meta">Chatrooms Bot <span>10:45 pm</span></p>
+                        <p class="message-content">Welcome to Chatrooms! :)</p>
+                    </div>
                 </div> -->
             </div>
         </main>
@@ -46,7 +48,6 @@
                     name="msg"
                     type="text"
                     placeholder="Enter message"
-                    required
                     autocomplete="off"
                 >
                 <button class="btn" type="submit">Send</button>
@@ -54,12 +55,11 @@
         </div>
     </div>
     
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
-        integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
-        crossorigin="anonymous"
-    ></script>
+    <!-- query string (qs) library for fetching username and room -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js" integrity="sha512-BHtomM5XDcUy7tDNcrcX1Eh0RogdWiMdXl3wJcKB3PFekXb3l5aDzymaTher61u6vEZySnoC/SAj2Y/p918Y3w==" crossorigin="anonymous"></script>
+    <!-- socket.io library -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
+
