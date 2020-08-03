@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Chatrooms App - Realtime Chat App</title>
+</head>
+<body>
+    <div class="room-container">
+        <header class="room-header">
+            <h1><i class="fas fa-comments"></i> Chatrooms</h1>
+            <a href="index.html" class="btn">Leave Chat</a>
+        </header>
+        <main class="room-main">
+            <div class="room-sidebar">
+                <h3 id="room-name">&lt;room-name&gt;</h3>
+                <hr class="seperator">
+                <h3><i class="fas fa-users"></i> Users:</h3>
+                <ul id="users-list">
+                    <li>user 1</li>
+                    <li>user 2</li>
+                    <li>user 3</li>
+                    <li>user 2</li>
+                    <li>user 3</li>
+                    <li>user 2</li>
+                    <li>user 3</li>
+                    <li>user 2</li>
+                    <li>user 3</li>
+                    <li>user 2</li>
+                    <li>user 3</li>
+                </ul>
+            </div>
+            <div class="room-stream">
+                <!-- <div class="message">
+                    <p class="meta">Chatrooms Bot <span>10:45 pm</span></p>
+                    <p class="message-content">Welcome to Chatrooms! :)</p>
+                </div> -->
+            </div>
+        </main>
+        <div class="room-chat-form-container">
+            <form id="room-chat-form">
+                <input
+                    id="msg"
+                    name="msg"
+                    type="text"
+                    placeholder="Enter message"
+                    required
+                    autocomplete="off"
+                >
+                <button class="btn" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+        integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+        crossorigin="anonymous"
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
