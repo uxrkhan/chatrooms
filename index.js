@@ -33,6 +33,11 @@ io.on('connection', socket => {
             .to(user.room)
             .emit('message', formatMessage(botName, `${user.username} has joined the chat.`));
         
+        // send users and room info 
+        io.to(user.room).emit('roomUsers', {
+            room: user.room,
+            users: getUsersOfRoom(user.room)
+        });
     });
     
     // listen for message sent from client
